@@ -6,11 +6,23 @@
   </head>
   <body>
     <div id="myDiv"></div>
+    <div id="myDiv2"></div>
     <script type="text/jsx">
       /** @jsx React.DOM */
       React.renderComponent(
         React.DOM.h1(null, 'Hello, world!'),
         document.getElementById('myDiv')
+      );
+    </script>
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+      var MyComponent = React.createClass({
+        render: function(){
+          return (<h1>Hello, world2!</h1>);
+        }
+      });
+      React.renderComponent(<MyComponent/>,
+        document.getElementById('myDiv2')
       );
     </script>
   </body>
