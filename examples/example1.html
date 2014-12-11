@@ -7,6 +7,7 @@
   <body>
     <div id="myDiv"></div>
     <div id="myDiv2"></div>
+    <div id="myDiv3"></div>
     <script type="text/jsx">
       /** @jsx React.DOM */
       React.renderComponent(
@@ -18,11 +19,23 @@
       /** @jsx React.DOM */
       var MyComponent = React.createClass({
         render: function(){
-          return (<h1>Hello, world2!</h1>);
+          return (<h1>Hello, {this.props.name}!</h1>);
         }
       });
-      React.renderComponent(<MyComponent/>,
+      var MyComponent3 = React.createClass({
+        getInitialState: function(){
+          return {count:5};
+        },
+        render: function(){
+          console.log('this-', this);
+          return (<h1>Hello, {this.state.count}!</h1>);
+        }
+      });
+      React.renderComponent(<MyComponent name='Emil' />,
         document.getElementById('myDiv2')
+      );
+      React.renderComponent(<MyComponent3 />,
+        document.getElementById('myDiv3')
       );
     </script>
   </body>
