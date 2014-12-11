@@ -8,6 +8,7 @@
     <div id="myDiv"></div>
     <div id="myDiv2"></div>
     <div id="myDiv3"></div>
+    <div id="mount-count"></div>
     <script type="text/jsx">
       /** @jsx React.DOM */
       React.renderComponent(
@@ -27,7 +28,6 @@
           return {count:5};
         },
         render: function(){
-          console.log('this-', this);
           return (<h1>Hello, {this.state.count}!</h1>);
         }
       });
@@ -37,6 +37,28 @@
       React.renderComponent(<MyComponent3 />,
         document.getElementById('myDiv3')
       );
+    </script>
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+      var Counter = React.createClass({
+        incrementCount: function(){
+          this.setState({
+            count: this.state.count + 1
+          });
+        },
+        getInitialState: function(){
+          return {count:0}
+        },
+        render: function(){
+          return (
+            <div class="my-component">
+              <h1>Count: {this.state.count}</h1>
+              <button type="button" onClick={this.incrementCount}>Increment</button>
+            </div>
+          );
+        }
+      });
+      React.renderComponent(<Counter/>, document.getElementById('mount-count'));
     </script>
   </body>
 </html>
